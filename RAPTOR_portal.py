@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import base64
 import time
-import numpy
+import numpy as np
 
 def get_base64_image(image_path):
     with open(image_path, "rb") as f:
