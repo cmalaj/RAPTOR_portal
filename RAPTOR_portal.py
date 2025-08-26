@@ -56,6 +56,7 @@ section[data-testid="stFileUploaderDropzone"] {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 0.75rem;  /* 👈 Adds spacing between icon, title, subtext */
     font-size: 1.25rem;
 
     border: 2px dashed #aa44cc;
