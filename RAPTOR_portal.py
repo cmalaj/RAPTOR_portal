@@ -60,12 +60,10 @@ uploaded_files = st.file_uploader(
     label_visibility="collapsed" 
 )
 
-# ---- Instruction text ----
-#st.markdown('<div class="upload-instruction">Drag files to upload<br>or click below</div>', unsafe_allow_html=True)
 
 # ---- FILE LIST + PROCESSING (Placeholder) ----
 if uploaded_files:
     st.markdown("### Uploaded Genomes")
     for file in uploaded_files:
         st.markdown(f"- 📄 `{file.name}`")
-    st.success("Files uploaded. Analysis modules coming soon...")
+    st.success("File uploaded. Analysing files... (This is a placeholder for actual processing)")
