@@ -96,10 +96,11 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 st.markdown("<h3>Upload bacterial genome</h3>", unsafe_allow_html=True)
+st.markdown("", unsafe_allow_html=True)
 
 # ---- FILE UPLOADER (Styled) ----
 uploaded_files = st.file_uploader(
-    "Drag and drop files here\n or click to select\n",
+    "Drag and drop files here",
     type=["fasta", "fa", "fna"],
     accept_multiple_files=True,
     label_visibility="collapsed" 
