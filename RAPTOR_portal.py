@@ -48,7 +48,7 @@ div[data-testid="stFileUploader"] > div:first-child {
 """, unsafe_allow_html=True)
 
 # ---- HEADER ----
-st.image("RAPTOR_logo.png", width=70)
+st.image("RAPTOR_logo.png", width=150)
 st.markdown("<h1>RAPTOR: Rapid Phage Finder</h1>", unsafe_allow_html=True)
 st.markdown("<h3>Upload bacterial genome(s)</h3>", unsafe_allow_html=True)
 
@@ -60,7 +60,7 @@ uploaded_files = st.file_uploader(
 )
 
 # ---- Instruction text ----
-st.markdown('<div class="upload-instruction">Drag files to upload<br>or click below</div>', unsafe_allow_html=True)
+#st.markdown('<div class="upload-instruction">Drag files to upload<br>or click below</div>', unsafe_allow_html=True)
 
 # ---- FILE LIST + PROCESSING (Placeholder) ----
 if uploaded_files:
