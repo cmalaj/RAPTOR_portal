@@ -128,7 +128,7 @@ else:
 
 # ---- FILE LIST + MOCK PROCESSING ----
 if uploaded_files:
-    st.markdown("### Uploaded Genomes")
+    st.markdown("### Uploaded Genome:")
     for file in uploaded_files:
         st.markdown(f"- 📄 `{file.name}`")
 
@@ -137,14 +137,24 @@ if uploaded_files:
         time.sleep(5)  # simulate processing time
 
     # Generate fake prediction results
-    phage_list = ["Phage_GE9K", "Phage_LG65", "Phage_J5TC", "Phage_EB1D", "Phage_6281", "Phage_4ELK"]
+    phage_list = ["GE9K", "LG65", "J5TC", "EB1D", "VKO7", "XMDS", "WDPI", "MZOB", "T0U1", "N4QL", "R4QE", "NC61", "4TWA", "C7E4", "N5HX", "6281", "2CJA", "O8XK", "4NWX", "DKQ8", "EUVX", "0VBC", "V1IB", "AUV6", "P71S", "Z6TS", "KPSM", "9XQE", "YK3I"]
+    phage_genus = ['Pawinskivirus', 'Pbunavirus', 'Phikzvirus', 'Phikmvirus', 'Wroclawvirus', 'Wroclawvirus', 'Septimatrevirus', 'Phikzvirus',  'Phikzvirus', 'Phikzvirus', 'Phikzvirus', 'Phikzvirus', 'Phikmvirus', 'Pbunavirus', 'Pbunavirus', 'Pbunavirus', 'Pbunavirus', 'Pawinskivirus', 'Pawinskivirus', 'Litunavirus', 'Litunavirus', 'Litunavirus', 'Kochitakasuvirus', 'Samunavirus', 'Paundecimvirus', 'Pakpunavirus', 'Pakpunavirus' 'Pakpunavirus', 'Bruynoghevirus']
     prediction_scores = np.random.uniform(0.4, 0.99, size=len(phage_list))
+    phage_wa_list = ['Phage WA'] * 29
+
+
+    
 
     results_df = pd.DataFrame({
+        "Predicted Probability of Infection": prediction_scores,
         "Phage": phage_list,
-        "Predicted Probability of Infection": prediction_scores
+        "Genus": phage_genus,
+        "Location": phage_wa_list
     }).sort_values("Predicted Probability of Infection", ascending=False).reset_index(drop=True)
 
+    # Add a column for ranking
+    results_df.insert(0, "Rank", results_df.index + 1)
+    
     # Round and format
     results_df["Predicted Probability of Infection"] = results_df["Predicted Probability of Infection"].apply(lambda x: f"{x:.2f}")
 
