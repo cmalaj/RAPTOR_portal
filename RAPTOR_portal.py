@@ -40,7 +40,7 @@ hr {
 """, unsafe_allow_html=True)
 
 # ---- HEADER ----
-st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Icosahedron.svg/1920px-Icosahedron.svg.png", width=70)
+st.image("RAPTOR_logo.png", width=70)
 st.markdown("<h1>RAPTOR: Rapid Phage Finder</h1>", unsafe_allow_html=True)
 st.markdown("<h3>Upload bacterial genome(s)</h3>", unsafe_allow_html=True)
 
