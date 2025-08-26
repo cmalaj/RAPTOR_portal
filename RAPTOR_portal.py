@@ -96,6 +96,8 @@ st.markdown(f"""
     <h1 class="title">RAPTOR: Rapid Phage Finder</h1>
 </div>
 """, unsafe_allow_html=True)
+st.markdown("", unsafe_allow_html=True)
+st.markdown("", unsafe_allow_html=True)
 st.markdown("<h4>Upload bacterial genome</h4>", unsafe_allow_html=True)
 st.markdown("", unsafe_allow_html=True)
 
