@@ -146,7 +146,7 @@ if uploaded_files:
     
 
     results_df = pd.DataFrame({
-        "Predicted Probability of Infection": prediction_scores,
+        "Predicted Probability of Productive Infection": prediction_scores,
         "Phage": phage_list,
         "Genus": phage_genus,
         "Location": phage_wa_list
