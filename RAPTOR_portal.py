@@ -48,7 +48,7 @@ div[data-testid="stFileUploader"] > div:first-child {
 """, unsafe_allow_html=True)
 
 # ---- HEADER ----
-st.image("RAPTOR_logo.png", width=150)
+st.image("RAPTOR_logo.png", width=120)
 st.markdown("<h1>RAPTOR: Rapid Phage Finder</h1>", unsafe_allow_html=True)
 st.markdown("<h3>Upload bacterial genome</h3>", unsafe_allow_html=True)
 
