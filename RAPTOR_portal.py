@@ -1,5 +1,11 @@
 import streamlit as st
 import pandas as pd
+import base64
+
+def get_base64_image(image_path):
+    with open(image_path, "rb") as f:
+        encoded = base64.b64encode(f.read()).decode()
+    return f"data:image/png;base64,{encoded}"
 
 # ---- PAGE CONFIG ----
 st.set_page_config(
@@ -68,9 +74,11 @@ div[data-testid="stFileUploader"] > div:first-child {
 """, unsafe_allow_html=True)
 
 # ---- HEADER ----
-st.markdown("""
+logo_base64 = get_base64_image("RAPTOR_logo.png")
+
+st.markdown(f"""
 <div class="header-inline">
-    <img src="RAPTOR_logo.png" class="logo">
+    <img src="{logo_base64}" class="logo">
     <h1 class="title">RAPTOR: Rapid Phage Finder</h1>
 </div>
 """, unsafe_allow_html=True)
