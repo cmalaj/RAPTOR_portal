@@ -96,7 +96,7 @@ st.markdown(f"""
     <h1 class="title">RAPTOR: Rapid Phage Finder</h1>
 </div>
 """, unsafe_allow_html=True)
-st.markdown("<h3>Upload bacterial genome</h3>", unsafe_allow_html=True)
+st.markdown("<h2>Upload bacterial genome</h2>", unsafe_allow_html=True)
 st.markdown("", unsafe_allow_html=True)
 
 # ---- FILE UPLOADER (Styled) ----
