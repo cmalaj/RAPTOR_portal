@@ -113,15 +113,17 @@ if not st.session_state.upload_complete:
         "Drag and drop files here",
         type=["fasta", "fa", "fna"],
         accept_multiple_files=True,
-        label_visibility="collapsed" 
+        label_visibility="collapsed",
+        key="file_upload"
     )
 
-    # If a file is uploaded, set flag
     if uploaded_files:
         st.session_state.uploaded_files = uploaded_files
         st.session_state.upload_complete = True
+        st.rerun()  # Immediately refresh UI to hide uploader
 else:
-    uploaded_files = st.session_state.uploaded_files
+    uploaded_files = st.session_state.get("uploaded_files", None)
+
 
 
 # ---- FILE LIST + MOCK PROCESSING ----
@@ -154,4 +156,4 @@ if uploaded_files:
     if st.button("🔄 Upload a different genome"):
         st.session_state.upload_complete = False
         st.session_state.uploaded_files = None
-        st.experimental_rerun()
+        st.rerun()
