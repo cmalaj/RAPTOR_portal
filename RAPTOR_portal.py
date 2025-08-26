@@ -12,6 +12,13 @@ def get_base64_image(image_path):
         encoded = base64.b64encode(f.read()).decode()
     return f"data:image/png;base64,{encoded}"
 
+def highlight_high_confidence(row):
+    score = float(row["Predicted Probability of Productive Infection"])
+    if score >= 0.95:
+        return ['background-color: lightgreen'] * len(row)
+    else:
+        return [''] * len(row)
+
 # ---- PAGE CONFIG ----
 st.set_page_config(
     page_title="RAPTOR: Rapid Phage Finder",
@@ -158,8 +165,9 @@ if uploaded_files:
     # Round and format
     results_df["Predicted Probability of Productive Infection"] = results_df["Predicted Probability of Productive Infection"].apply(lambda x: f"{x:.2f}")
 
+    styled_df = results_df.style.apply(highlight_high_confidence, axis=1)
     st.markdown("### Predicted Phage Infectivity Scores")
-    st.dataframe(results_df.style.highlight_max(axis=0, color='#D2F4EA'))
+    st.dataframe(styled_df, use_container_width=True, hide_index=True)
 
     # Optional: reset button to re-upload
     st.markdown("---")
