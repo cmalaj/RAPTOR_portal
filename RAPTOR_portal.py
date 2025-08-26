@@ -18,7 +18,7 @@ st.markdown("""
 <style>
 /* Full gradient background */
 .stApp {
-    background: linear-gradient(to bottom, #7ec8e3, #FFFFFF, #cb9cc5);
+    background: linear-gradient(to bottom, #7ec8e3, #7ec8e3, #FFFFFF, #cb9cc5, #cb9cc5);
     background-attachment: fixed;
 }
 
