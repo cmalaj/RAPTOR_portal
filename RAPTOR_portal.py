@@ -56,7 +56,7 @@ section[data-testid="stFileUploaderDropzone"] {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 
     border: 2px dashed #aa44cc;
     border-radius: 15px;
