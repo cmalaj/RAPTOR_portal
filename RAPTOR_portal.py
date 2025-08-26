@@ -21,6 +21,26 @@ h1, h2, h3, .stTextInput label, .stFileUploader label {
     color: #1a1a1a;
     text-align: center;
 }
+            /* Inline logo + title */
+.header-inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.logo {
+    width: 80px;
+    height: auto;
+}
+
+.title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+}
 
 /* Style the native Streamlit uploader dropzone */
 section[data-testid="stFileUploaderDropzone"] {
@@ -48,8 +68,12 @@ div[data-testid="stFileUploader"] > div:first-child {
 """, unsafe_allow_html=True)
 
 # ---- HEADER ----
-st.image("RAPTOR_logo.png", width=120)
-st.markdown("<h1>RAPTOR: Rapid Phage Finder</h1>", unsafe_allow_html=True)
+st.markdown("""
+<div class="header-inline">
+    <img src="RAPTOR_logo.png" class="logo">
+    <h1 class="title">RAPTOR: Rapid Phage Finder</h1>
+</div>
+""", unsafe_allow_html=True)
 st.markdown("<h3>Upload bacterial genome</h3>", unsafe_allow_html=True)
 
 # ---- FILE UPLOADER (Styled) ----
