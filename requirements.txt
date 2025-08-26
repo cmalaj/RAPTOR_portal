@@ -1,0 +1,6 @@
+streamlit>=1.32.0
+pandas>=2.2.0
+numpy>=1.25.0
+catboost>=1.2  # Placeholder: required when model is integrated
+matplotlib>=3.8.0  # Optional: for future visualisation
+scikit-learn>=1.4.0  # Optional: if using sklearn utilities or metrics
