@@ -1,62 +1,70 @@
 import streamlit as st
 import pandas as pd
-from io import StringIO
+import base64
 
-st.set_page_config(page_title="Phage Infection Predictor", layout="wide")
+# ---- PAGE CONFIG ----
+st.set_page_config(
+    page_title="RAPTOR: Rapid Phage Finder",
+    layout="centered"
+)
 
-st.title("🔬 Bacterial Genome → Phage Infection Predictor Portal")
-
+# ---- CUSTOM CSS ----
 st.markdown("""
-Upload a bacterial genome FASTA file. The portal will:
-1. Annotate defence systems (via PADLOC)
-2. Build a defence profile
-3. Predict which phages from our library are likely to infect the bacterium.
-""")
+<style>
+body {
+    background: linear-gradient(to bottom, #7ec8e3, #cb9cc5);
+}
+h1, h2, h3, .stTextInput label, .stFileUploader label {
+    color: #1a1a1a;
+    text-align: center;
+}
+.upload-box {
+    border: 2px dashed #aa44cc;
+    padding: 2rem;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+}
+.upload-instruction {
+    font-size: 1.2rem;
+    color: #5c2672;
+    margin-top: 1rem;
+}
+.file-list {
+    margin-top: 1rem;
+}
+hr {
+    border: 1px solid #eee;
+}
+</style>
+""", unsafe_allow_html=True)
 
-# ---------------------
-# Placeholder Functions
-# ---------------------
+# ---- HEADER ----
+st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Icosahedron.svg/1920px-Icosahedron.svg.png", width=70)
+st.markdown("<h1>RAPTOR: Rapid Phage Finder</h1>", unsafe_allow_html=True)
+st.markdown("<h3>Upload bacterial genome(s)</h3>", unsafe_allow_html=True)
 
-def run_padloc(fasta_str):
-    # Placeholder for PADLOC pipeline call
-    st.info("Running PADLOC annotation (placeholder)...")
-    return {"RM": True, "CBASS": False, "Druantia": True}  # dummy result
+# ---- FILE UPLOAD SECTION ----
+with st.container():
+    st.markdown('<div class="upload-box">', unsafe_allow_html=True)
 
-def build_defence_profile(padloc_results):
-    # Placeholder: convert PADLOC JSON to binary presence/absence
-    st.info("Building defence system profile (placeholder)...")
-    profile = {k: int(v) for k, v in padloc_results.items()}
-    return pd.DataFrame([profile])
+    uploaded_files = st.file_uploader(
+        "Drag files to upload or click to browse",
+        type=["fasta", "fa", "fna"],
+        accept_multiple_files=True,
+        label_visibility="collapsed"
+    )
 
-def predict_phage_infectivity(defence_profile_df):
-    # Placeholder: run prediction using trained CatBoost model
-    st.info("Running CatBoost prediction (placeholder)...")
-    dummy_phage_scores = {
-        "Phage_GE9K": 0.92,
-        "Phage_LG65": 0.15,
-        "Phage_EB1D": 0.74
-    }
-    return pd.DataFrame.from_dict(dummy_phage_scores, orient="index", columns=["Predicted Score"]).sort_values("Predicted Score", ascending=False)
+    st.markdown('<div class="upload-instruction">Drag files to upload<br>or click below</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
-# ---------------------
-# Upload and Processing
-# ---------------------
+# ---- FILE LIST + PROCESSING (Placeholder) ----
+if uploaded_files:
+    st.markdown("### Uploaded Genomes")
+    for file in uploaded_files:
+        st.markdown(f"- 📄 `{file.name}`")
 
-uploaded_file = st.file_uploader("Upload bacterial genome (FASTA format)", type=["fasta", "fa", "fna"])
-
-if uploaded_file is not None:
-    fasta_content = uploaded_file.read().decode("utf-8")
-    st.text_area("FASTA Preview", fasta_content[:1000], height=200)
-
-    # --- Run Pipeline ---
-    with st.spinner("Processing uploaded genome..."):
-        padloc_results = run_padloc(fasta_content)
-        defence_profile_df = build_defence_profile(padloc_results)
-        phage_preds_df = predict_phage_infectivity(defence_profile_df)
-
-    # --- Results Display ---
-    st.subheader("📊 Predicted Phage Infectivity Scores")
-    st.dataframe(phage_preds_df.style.background_gradient(cmap="viridis", axis=0))
+    st.markdown("✅ Files uploaded. Analysis modules coming soon...")
 
 else:
-    st.warning("Please upload a FASTA file to begin.")
+    st.info("Awaiting FASTA file upload...")
