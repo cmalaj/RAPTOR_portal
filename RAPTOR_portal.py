@@ -50,7 +50,7 @@ div[data-testid="stFileUploader"] > div:first-child {
 # ---- HEADER ----
 st.image("RAPTOR_logo.png", width=150)
 st.markdown("<h1>RAPTOR: Rapid Phage Finder</h1>", unsafe_allow_html=True)
-st.markdown("<h3>Upload bacterial genome(s)</h3>", unsafe_allow_html=True)
+st.markdown("<h3>Upload bacterial genome</h3>", unsafe_allow_html=True)
 
 # ---- FILE UPLOADER (Styled) ----
 uploaded_files = st.file_uploader(
@@ -69,5 +69,3 @@ if uploaded_files:
     for file in uploaded_files:
         st.markdown(f"- 📄 `{file.name}`")
     st.success("Files uploaded. Analysis modules coming soon...")
-else:
-    st.info("Awaiting FASTA file upload...")
