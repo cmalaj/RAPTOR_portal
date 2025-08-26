@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import base64
+import time
+import numpy
 
 def get_base64_image(image_path):
     with open(image_path, "rb") as f:
@@ -110,9 +112,27 @@ uploaded_files = st.file_uploader(
 )
 
 
-# ---- FILE LIST + PROCESSING (Placeholder) ----
+# ---- FILE LIST + MOCK PROCESSING ----
 if uploaded_files:
     st.markdown("### Uploaded Genomes")
     for file in uploaded_files:
         st.markdown(f"- 📄 `{file.name}`")
-    st.success("File uploaded. Analysing files... (This is a placeholder for actual processing)")
+
+    # Display spinner while "processing"
+    with st.spinner("Running PADLOC, profiling defences, and predicting phage infectivity..."):
+        time.sleep(5)  # simulate processing time
+
+    # Generate fake prediction results
+    phage_list = ["Phage_GE9K", "Phage_LG65", "Phage_J5TC", "Phage_EB1D", "Phage_6281", "Phage_4ELK"]
+    prediction_scores = np.random.uniform(0.4, 0.99, size=len(phage_list))
+
+    results_df = pd.DataFrame({
+        "Phage": phage_list,
+        "Predicted Probability of Infection": prediction_scores
+    }).sort_values("Predicted Probability of Infection", ascending=False).reset_index(drop=True)
+
+    # Round and format
+    results_df["Predicted Probability of Infection"] = results_df["Predicted Probability of Infection"].apply(lambda x: f"{x:.2f}")
+
+    st.markdown("### Predicted Phage Infectivity Scores")
+    st.dataframe(results_df.style.highlight_max(axis=0, color='#D2F4EA'))
