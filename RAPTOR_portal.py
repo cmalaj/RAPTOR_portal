@@ -56,7 +56,7 @@ section[data-testid="stFileUploaderDropzone"] {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    font-size: 2.2rem;
+    font-size: 1.5rem;
 
     border: 2px dashed #aa44cc;
     border-radius: 15px;
@@ -78,7 +78,7 @@ div[data-testid="stFileUploader"] > div:first-child {
 
 /* Instruction text below uploader */
 .upload-instruction {
-    font-size: 2.4rem;
+    font-size: 1.2rem;
     color: #5c2672;
     text-align: center;
     margin-top: 3rem;
