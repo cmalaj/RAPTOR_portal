@@ -138,7 +138,7 @@ if uploaded_files:
 
     # Generate fake prediction results
     phage_list = ["GE9K", "LG65", "J5TC", "EB1D", "VKO7", "XMDS", "WDPI", "MZOB", "T0U1", "N4QL", "R4QE", "NC61", "4TWA", "C7E4", "N5HX", "6281", "2CJA", "O8XK", "4NWX", "DKQ8", "EUVX", "0VBC", "V1IB", "AUV6", "P71S", "Z6TS", "KPSM", "9XQE", "YK3I"]
-    phage_genus = ['Pawinskivirus', 'Pbunavirus', 'Phikzvirus', 'Phikmvirus', 'Wroclawvirus', 'Wroclawvirus', 'Septimatrevirus', 'Phikzvirus',  'Phikzvirus', 'Phikzvirus', 'Phikzvirus', 'Phikzvirus', 'Phikmvirus', 'Pbunavirus', 'Pbunavirus', 'Pbunavirus', 'Pbunavirus', 'Pawinskivirus', 'Pawinskivirus', 'Litunavirus', 'Litunavirus', 'Litunavirus', 'Kochitakasuvirus', 'Samunavirus', 'Paundecimvirus', 'Pakpunavirus', 'Pakpunavirus' 'Pakpunavirus', 'Bruynoghevirus']
+    phage_genus = ['Pawinskivirus', 'Pbunavirus', 'Phikzvirus', 'Phikmvirus', 'Wroclawvirus', 'Wroclawvirus', 'Septimatrevirus', 'Phikzvirus', 'Phikzvirus', 'Phikzvirus', 'Phikzvirus', 'Phikzvirus', 'Phikmvirus', 'Pbunavirus', 'Pbunavirus', 'Pbunavirus', 'Pbunavirus', 'Pawinskivirus', 'Pawinskivirus', 'Litunavirus', 'Litunavirus', 'Litunavirus', 'Kochitakasuvirus', 'Samunavirus', 'Paundecimvirus', 'Pakpunavirus', 'Pakpunavirus', 'Pakpunavirus', 'Bruynoghevirus']
     prediction_scores = np.random.uniform(0.4, 0.99, size=len(phage_list))
     phage_wa_list = ['Phage WA'] * 29
 
@@ -154,9 +154,9 @@ if uploaded_files:
 
     # Add a column for ranking
     results_df.insert(0, "Rank", results_df.index + 1)
-    
+
     # Round and format
-    results_df["Predicted Probability of Infection"] = results_df["Predicted Probability of Infection"].apply(lambda x: f"{x:.2f}")
+    results_df["Predicted Probability of Productive Infection"] = results_df["Predicted Probability of Infection"].apply(lambda x: f"{x:.2f}")
 
     st.markdown("### Predicted Phage Infectivity Scores")
     st.dataframe(results_df.style.highlight_max(axis=0, color='#D2F4EA'))
