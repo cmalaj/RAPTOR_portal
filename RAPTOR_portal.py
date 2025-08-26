@@ -13,7 +13,7 @@ st.set_page_config(
     layout="centered"
 )
 
-# ---- CSS: Background + Aligned Upload Styling ----
+# ---- CSS: Background + Styling ----
 st.markdown("""
 <style>
 /* Full gradient background */
@@ -22,12 +22,13 @@ st.markdown("""
     background-attachment: fixed;
 }
 
-/* Headings and text alignment */
+/* Headings and label text */
 h1, h2, h3, .stTextInput label, .stFileUploader label {
     color: #1a1a1a;
     text-align: center;
 }
-            /* Inline logo + title */
+
+/* Inline logo + title */
 .header-inline {
     display: flex;
     align-items: center;
@@ -48,16 +49,29 @@ h1, h2, h3, .stTextInput label, .stFileUploader label {
     margin: 0;
 }
 
-/* Style the native Streamlit uploader dropzone */
+/* File uploader styling */
 section[data-testid="stFileUploaderDropzone"] {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 1.1rem;
+
     border: 2px dashed #aa44cc;
     border-radius: 15px;
     padding: 2rem;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
 }
 
-/* Hide the default outer uploader border */
+/* Enlarge icon and drag-drop text inside uploader */
+section[data-testid="stFileUploaderDropzone"] svg,
+section[data-testid="stFileUploaderDropzone"] p {
+    transform: scale(1.2);
+}
+
+/* Hide default outer uploader border */
 div[data-testid="stFileUploader"] > div:first-child {
     border: none;
 }
@@ -69,7 +83,6 @@ div[data-testid="stFileUploader"] > div:first-child {
     text-align: center;
     margin-top: 1rem;
 }
-
 </style>
 """, unsafe_allow_html=True)
 
