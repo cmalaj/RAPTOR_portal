@@ -150,13 +150,13 @@ if uploaded_files:
         "Phage": phage_list,
         "Genus": phage_genus,
         "Location": phage_wa_list
-    }).sort_values("Predicted Probability of Infection", ascending=False).reset_index(drop=True)
+    }).sort_values("Predicted Probability of Productive Infection", ascending=False).reset_index(drop=True)
 
     # Add a column for ranking
     results_df.insert(0, "Rank", results_df.index + 1)
 
     # Round and format
-    results_df["Predicted Probability of Productive Infection"] = results_df["Predicted Probability of Infection"].apply(lambda x: f"{x:.2f}")
+    results_df["Predicted Probability of Productive Infection"] = results_df["Predicted Probability of Productive Infection"].apply(lambda x: f"{x:.2f}")
 
     st.markdown("### Predicted Phage Infectivity Scores")
     st.dataframe(results_df.style.highlight_max(axis=0, color='#D2F4EA'))
