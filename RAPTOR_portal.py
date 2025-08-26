@@ -4,6 +4,9 @@ import base64
 import time
 import numpy as np
 
+if "upload_complete" not in st.session_state:
+    st.session_state.upload_complete = False
+
 def get_base64_image(image_path):
     with open(image_path, "rb") as f:
         encoded = base64.b64encode(f.read()).decode()
@@ -98,18 +101,27 @@ st.markdown(f"""
     <h1 class="title">RAPTOR: Rapid Phage Finder</h1>
 </div>
 """, unsafe_allow_html=True)
-st.markdown("", unsafe_allow_html=True)
-st.markdown("", unsafe_allow_html=True)
-st.markdown("<h4>Upload bacterial genome</h4>", unsafe_allow_html=True)
-st.markdown("", unsafe_allow_html=True)
+
 
 # ---- FILE UPLOADER (Styled) ----
-uploaded_files = st.file_uploader(
-    "Drag and drop files here",
-    type=["fasta", "fa", "fna"],
-    accept_multiple_files=True,
-    label_visibility="collapsed" 
-)
+if not st.session_state.upload_complete:
+    st.markdown("", unsafe_allow_html=True)
+    st.markdown("", unsafe_allow_html=True)
+    st.markdown("<h4>Upload bacterial genome</h4>", unsafe_allow_html=True)
+    st.markdown("", unsafe_allow_html=True)
+    uploaded_files = st.file_uploader(
+        "Drag and drop files here",
+        type=["fasta", "fa", "fna"],
+        accept_multiple_files=True,
+        label_visibility="collapsed" 
+    )
+
+    # If a file is uploaded, set flag
+    if uploaded_files:
+        st.session_state.uploaded_files = uploaded_files
+        st.session_state.upload_complete = True
+else:
+    uploaded_files = st.session_state.uploaded_files
 
 
 # ---- FILE LIST + MOCK PROCESSING ----
@@ -136,3 +148,10 @@ if uploaded_files:
 
     st.markdown("### Predicted Phage Infectivity Scores")
     st.dataframe(results_df.style.highlight_max(axis=0, color='#D2F4EA'))
+
+    # Optional: reset button to re-upload
+    st.markdown("---")
+    if st.button("🔄 Upload a different genome"):
+        st.session_state.upload_complete = False
+        st.session_state.uploaded_files = None
+        st.experimental_rerun()
