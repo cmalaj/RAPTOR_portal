@@ -56,11 +56,11 @@ section[data-testid="stFileUploaderDropzone"] {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    font-size: 1.1rem;
+    font-size: 2.2rem;
 
     border: 2px dashed #aa44cc;
     border-radius: 15px;
-    padding: 2rem;
+    padding: 3rem;
     background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
 }
@@ -78,10 +78,10 @@ div[data-testid="stFileUploader"] > div:first-child {
 
 /* Instruction text below uploader */
 .upload-instruction {
-    font-size: 1.2rem;
+    font-size: 2.4rem;
     color: #5c2672;
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 3rem;
 }
 </style>
 """, unsafe_allow_html=True)
