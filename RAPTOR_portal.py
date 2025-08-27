@@ -140,8 +140,10 @@ if uploaded_files:
         st.markdown(f"- 📄 `{file.name}`")
 
     # Display spinner while "processing"
-    with st.spinner("Running PADLOC, profiling defences, and predicting phage infectivity..."):
-        time.sleep(5)  # simulate processing time
+    with st.spinner("Building gene profile..."):
+        time.sleep(2.5)  # simulate processing time
+    with st.spinner("Predicting phage infectivity score using PHAEDRA..."):
+        time.sleep(2.5)  # simulate processing time
 
     # Generate fake prediction results
     phage_list = ["GE9K", "LG65", "J5TC", "EB1D", "VKO7", "XMDS", "WDPI", "MZOB", "T0U1", "N4QL", "R4QE", "NC61", "4TWA", "C7E4", "N5HX", "6281", "2CJA", "O8XK", "4NWX", "DKQ8", "EUVX", "0VBC", "V1IB", "AUV6", "P71S", "Z6TS", "KPSM", "9XQE", "YK3I"]
