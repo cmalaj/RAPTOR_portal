@@ -15,7 +15,7 @@ def get_base64_image(image_path):
 def highlight_high_confidence(row):
     score = float(row["Predicted Probability of Productive Infection"])
     if score >= 0.95:
-        return ['background-color: lightgreen'] * len(row)
+        return ['background-color: palegreen'] * len(row)
     else:
         return [''] * len(row)
 
