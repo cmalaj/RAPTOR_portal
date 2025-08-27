@@ -140,7 +140,9 @@ if uploaded_files:
         st.markdown(f"- 📄 `{file.name}`")
 
     # Display spinner while "processing"
-    with st.spinner("Building gene profile..."):
+    with st.spinner("Pseudomonas aeruginosa genome identified."):
+        time.sleep(2.5)  # simulate processing time
+    with st.spinner("Building genetic profile..."):
         time.sleep(2.5)  # simulate processing time
     with st.spinner("Predicting phage infectivity score using PHAEDRA..."):
         time.sleep(2.5)  # simulate processing time
