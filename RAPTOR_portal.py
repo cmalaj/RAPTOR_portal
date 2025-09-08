@@ -3,9 +3,25 @@ import pandas as pd
 import base64
 import time
 import numpy as np
+from Bio import SeqIO
+import io
 
 if "upload_complete" not in st.session_state:
     st.session_state.upload_complete = False
+
+def validate_fasta_for_p_aeruginosa(uploaded_file):
+    try:
+        contents = uploaded_file.read().decode("utf-8")
+        fasta_io = io.StringIO(contents)
+        record = next(SeqIO.parse(fasta_io, "fasta"))
+
+        is_pseudo = "pseudomonas aeruginosa" in record.description.lower()
+        is_complete = "complete genome" in record.description.lower() or len(record.seq) > 5000000
+
+        return is_pseudo, is_complete, record.id
+
+    except Exception as e:
+        return False, False, f"Parsing error: {str(e)}"
 
 def get_base64_image(image_path):
     with open(image_path, "rb") as f:
@@ -139,9 +155,17 @@ if uploaded_files:
     for file in uploaded_files:
         st.markdown(f"- 📄 `{file.name}`")
 
+    # --- Validate uploaded FASTA with spinner ---
+    with st.spinner("Validating uploaded genome..."):
+        is_pseudo, is_complete, genome_id = validate_fasta_for_p_aeruginosa(uploaded_files[0])
+    if not is_pseudo:
+        st.error("Uploaded genome is not recognised as *Pseudomonas aeruginosa*.")
+        st.stop()
+    if not is_complete:
+        st.warning("Uploaded genome may be incomplete or missing metadata.")
+    st.success(f"Bacterial genome `{genome_id}` identified and confirmed as *P. aeruginosa*.")
+
     # Display spinner while "processing"
-    with st.spinner("Bacterial genome identified: Pseudomonas aeruginosa."):
-        time.sleep(2.5)  # simulate processing time
     with st.spinner("Building genetic profile..."):
         time.sleep(2.5)  # simulate processing time
     with st.spinner("Predicting phage infectivity score using PHAEDRA..."):
